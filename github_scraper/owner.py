@@ -1,4 +1,4 @@
-from utils import Utils
+from github_scraper.utils import Utils
 import re
 import os
 import base64

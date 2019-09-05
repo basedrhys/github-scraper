@@ -1,9 +1,9 @@
 import re
 import os
 import glob
-from utils import Utils
-from owner import Owner
-from config import Config
+from github_scraper.utils import Utils
+from github_scraper.owner import Owner
+from github_scraper.config import Config
 
 class FileScraper:
     def __init__(self, user_agent='', token='', config=None):
