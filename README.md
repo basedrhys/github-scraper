@@ -5,16 +5,26 @@ Terms:
 - **Owner** is used to describe a repository owner/user that created the repository. Owner is GitHubs term so it's used here for consistency
 
 ## Installation
-    python3 -m pip uninstall github_scraper
-## Usage
-Downloading all Java files from a GitHub user, 'zxing'
+    python3 -m pip install github_scraper
 
-    >>> from github_scraper import FileScraper
-    >>> scraper = FileScraper('MY_USERNAME', 'MY_API_TOKEN')
-    >>> scraper.download_owner('zxing')
-    
-    Scraping owner: zxing
-    Searching 1 repos, starting from index 0...
-    Deleting 0 files first from partially finished repo...
-    Starting repo zxing at index 0
-    Downloaded 499 total target files
+## Usage
+Import and set up the config with username and API token
+
+    >>> import github_scraper as gs
+    >>> config = gs.Config('MY_USERNAME', 'MY_API_KEY')
+
+It defaults to downloading Java files, but can be configured for other languages
+
+    >>> config = gs.Config('MY_USERNAME', 'MY_API_KEY', repo_language='Python', query_language='python', suffix='.py')
+
+Downloading all Java files from myself
+
+    >>> scraper = gs.FileScraper(config)
+    >>> scraper.download_owner('basedrhys')
+    Scraping owner: basedrhys
+    ...
+
+Downloading all Java files from a specific repo
+
+    >>> owner = gs.Owner('google', config)
+    >>> owner.download_repo('tink')

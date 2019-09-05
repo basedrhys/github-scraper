@@ -81,7 +81,7 @@ class Owner:
         
         
     # given a user and repo, download all target files
-    def download_files(self, repo, curr_index=0):
+    def download_repo(self, repo, curr_index=0):
         # First check if this repo has enough Java files to be worth searching
         if not self.many_target_files(repo):
             print("\tIgnoring repo: {} at index {}, not enough target files".format(repo, curr_index))

@@ -6,15 +6,7 @@ from github_scraper.owner import Owner
 from github_scraper.config import Config
 
 class FileScraper:
-    def __init__(self, user_agent='', token='', config=None):
-        # Create the default config if we just get given a user agent and token
-        if config == None:
-            if user_agent == '' or token == '':
-                print("ERR: You must at least provide a user agent and token for API authentication.")
-                return None
-
-            config = Config(user_agent, token)
-
+    def __init__(self, config):
         self.config = config
     
     def get_tokens_rem(self):
@@ -70,7 +62,7 @@ class FileScraper:
         # For each repo that this owner has, collect the java files
         curr_index = start_index
         for repo in repos:
-            file_count += owner_scraper.download_files(repo, curr_index)
+            file_count += owner_scraper.download_repo(repo, curr_index)
             curr_index += 1
             
         print("Downloaded {} total target files".format(file_count))
